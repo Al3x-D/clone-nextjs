@@ -24,7 +24,10 @@ export default function Home({ products }) {
 }
 // for server side rendering
 export async function getServerSideProps(context) {
+
+  //session for authentification
   const session = await getSession(context)
+  
   const products = await fetch("https://fakestoreapi.com/products").then(
     (res) => res.json()
   );

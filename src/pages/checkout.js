@@ -19,6 +19,7 @@ const Checkout = () => {
 
     const createCheckoutSession = async () =>{
         const stripe = await stripePromise;
+
         // call the backend to create a checkout session
         const checkoutSession = await axios.post('/api/create-checkout-session',
         {
@@ -26,6 +27,7 @@ const Checkout = () => {
             email: session.user.email
         }
         );
+        
         //redirect user/customer to Stripe Checkout
         const result = await stripe.redirectToCheckout({
             sessionId: checkoutSession.data.id

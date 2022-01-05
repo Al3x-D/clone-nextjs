@@ -11,8 +11,8 @@ export default async(req, res) => {
         quantity: 1,
         price_data: {
             currency:'eur',
-            unit_amount: item.price *100,
-            product_data:{
+            unit_amount: item.price * 100,
+            product_data: {
                 name: item.title,
                 images:[item.image]
             },
@@ -22,7 +22,7 @@ export default async(req, res) => {
     // console.log(transformedItems)
     const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],
-        shipping_rates:["shr_1KE9asEo8vV38YRbvRWImm7c"],
+        shipping_rates:["shr_1KEeJRHWPQif1fsOFHad1gW9"],
         shipping_address_collection:{
             allowed_countries:['GB', 'US', 'CA']
         },

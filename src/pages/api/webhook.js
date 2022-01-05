@@ -57,9 +57,7 @@ const fulfillOrder = async (session) => {
         }
     }
 
-    // if (req.method ==='GET'){
-
-    // }
+    
 }
 
 export const config ={

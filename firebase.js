@@ -1,12 +1,12 @@
 import firebase from "firebase";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCrImvtspAO-oIFbP7V9ZAB_RKaLr0I1Ro",
-  authDomain: "amzn2-13ab8.firebaseapp.com",
-  projectId: "amzn2-13ab8",
-  storageBucket: "amzn2-13ab8.appspot.com",
-  messagingSenderId: "505681747940",
-  appId: "1:505681747940:web:8b7c76c8f71592225d71f1"
+  apiKey: "AIzaSyDbpF9yLhl2CqIb9y7pCoTJW_ZKOCPHWrI",
+  authDomain: "clone-nextjs-b21a1.firebaseapp.com",
+  projectId: "clone-nextjs-b21a1",
+  storageBucket: "clone-nextjs-b21a1.appspot.com",
+  messagingSenderId: "809779001925",
+  appId: "1:809779001925:web:7e944a5f65562f6a1ec12c"
 };
 
 const app = !firebase.apps.length
@@ -15,13 +15,3 @@ const app = !firebase.apps.length
 
 export const db = app.firestore();
 
-//OLD firebase
-
-// const firebaseConfig = {
-//   apiKey: "AIzaSyA0bA0wEY-9kJbbY90VJ1FXvrXtA4w4USg",
-//   authDomain: "amzn-2-f701f.firebaseapp.com",
-//   projectId: "amzn-2-f701f",
-//   storageBucket: "amzn-2-f701f.appspot.com",
-//   messagingSenderId: "1045212442340",
-//   appId: "1:1045212442340:web:69a3d0bcc4d9e0199b06f1"
-// };
