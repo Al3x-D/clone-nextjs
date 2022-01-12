@@ -6,14 +6,14 @@ import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { selectItems } from '../slices/basketSlice';
 
-const Header = () => {
+const Header = ({ onSearchValue }) => {
     const { data: session } = useSession();
     const router = useRouter();
     // selector means we grab some info from global store(basket slice from global store)
     const items = useSelector(selectItems);
-    return (
 
-        <header>
+    return (
+        <header className="sticky top-0 z-50">
             {/* Top nav */}
             <div className='flex items-center bg-amazon_blue flex-grow py-2'>
                 <div className='mt-2 flex items-center flex-grow sm:flex-grow-0'>
@@ -29,15 +29,30 @@ const Header = () => {
                 </div>
                 {/* search */}
                 <div className='hidden sm:flex items-center h-10 rounded-md flex-grow bg-yellow-400 hover:bg-yellow-500'>
-                    <input className='p-2 h-full w-6 flex-grow flex-shrink rounded-l-md
-                    focus:outline-none px-4 ' type="text" />
+                    <input
+                        className='p-2 h-full w-6 flex-grow flex-shrink rounded-l-md
+                    focus:outline-none px-4 '
+                        type="text"
+                        placeholder={
+                            router.route === "/"
+                                ? " Search"
+                                : ""
+                        }
+                        onInput={(event) =>
+                            router.route === "/" &&
+                            onSearchValue(event.target.value)
+                        }
+
+                    />
                     <SearchIcon
                         className='h-12 p-4'
                     />
                 </div>
                 {/* Right */}
                 <div className='text-white flex items-center text-xs space-x-6 mx-6 whitespace-nowrap'>
-                    <div onClick={!session ? signIn : signOut} className='cursor-pointer link'>
+                    <div
+                        onClick={!session ? signIn : signOut}
+                        className='cursor-pointer link'>
                         <p className='hover:underline'>
                             {session ? `Hello, ${session.user.name}` : "Sign In"}
                         </p>
@@ -46,7 +61,8 @@ const Header = () => {
                     <div
                         /*  if we login (have session ) */
                         /*    onClick={()=> session && router.push("/orders")} */
-                        onClick={() => session && router.push("/orders")} className='link'>
+                        onClick={() => session && router.push("/orders")}
+                        className='link'>
                         <p>Returns</p>
                         <p className='font-extrabold md:text-sm'>& Order</p>
                     </div>

@@ -1,49 +1,75 @@
 import React from 'react';
+import { MinusSmIcon, PlusIcon, StarIcon } from "@heroicons/react/solid";
 import Image from "next/image"
-import { StarIcon } from '@heroicons/react/solid';
 import Currency from 'react-currency-formatter';
 import { useDispatch } from 'react-redux';
-import { addToBasket, removeFromBasket } from '../slices/basketSlice';
-const CheckoutProduct = ({ 
-    id, 
-    title, 
-    price, 
-    rating, 
-    description, 
-    category, 
-    image, 
-    hasPrime }) => {
+import {
+    addToBasket,
+    removeFromBasket,
+    removeGroupedFromBasket,
+} from '../slices/basketSlice';
+
+const CheckoutProduct = ({
+    id,
+    title,
+    price,
+    rating,
+    description,
+    category,
+    image,
+    hasPrime,
+    quantity
+}) => {
     const dispatch = useDispatch();
+    const total = price * quantity;
 
     const addItemToBasket = () => {
         const product = {
             id, title, price, rating, description, category, image, hasPrime
         }
         //push item into redux
+        // Sending the product via an action to the redux store (= basket "slice")
         dispatch(addToBasket(product))
     }
     const removeItemFromBasket = () => {
         // dispatch submit action removeFromBasket
         //Remove item from redux
-        // console.log({id}) facking fack
-        dispatch(removeFromBasket({id}));
+        dispatch(removeFromBasket({ id }));   
     };
+       
+    const removeGroupFromBasket = ()=> {
+        dispatch(removeGroupedFromBasket({ id }));
+    }
+   
     return (
         <div className='grid grid-cols-5 '>
-            <Image src={image} height={200} width={200} objectFit="contain" />
+            <Image
+                src={image}
+                height={200}
+                width={200}
+                objectFit="contain"
+            />
             {/* middle */}
             <div className='col-span-3 mx-5'>
-                <p>{title}</p>
+                <p className='my-3'>{title}</p>
                 <div className='flex'>
                     {Array(rating).fill().map((_, i) => (
-                        <StarIcon key={i} className='h-5 text-yellow-500' />
+                        <StarIcon
+                            key={i}
+                            className='h-5 text-yellow-500' 
+                        />
                     ))}
                 </div>
                 <p className='text-xs mt-2 my-2 line-clamp-3'>{description}</p>
-                <Currency
+                
+                {quantity} × <Currency
                     quantity={price}
                     currency="EUR"
-                />
+                /> ={" "}
+                <span className="font-bold">
+                    <Currency quantity={total} currency="EUR" />
+                </span>
+                      
                 {hasPrime && (
                     <div className='flex items-center space-x-2'>
                         <img
@@ -58,10 +84,31 @@ const CheckoutProduct = ({
 
             </div>
             {/* Right add/remove buttons */}
+
+            {/*  old version
+
             <div className='flex flex-col space-y-2 my-auto justify-self-end'>
                 <button className='button' onClick={addItemToBasket}>Add to Basket</button>
                 <button className='button' onClick={removeItemFromBasket}>Remove from Basket</button>
-        </div>
+            </div> */}
+            <div className="flex flex-col space-y-2 my-auto justify-self-end">
+                <div className="flex justify-between xs:justify-start">
+                    <button
+                        className="button sm:p-1"
+                        onClick={removeItemFromBasket}>
+                        <MinusSmIcon className="h-5 text-black" />
+                    </button>
+                    <div className="p-2 whitespace-normal sm:p-1 sm:whitespace-nowrap">
+                        Quantity: <span className="font-bold">{quantity}</span>
+                    </div>
+                    <button className="button sm:p-1" onClick={addItemToBasket}>
+                        <PlusIcon className="h-5 text-black" />
+                    </button>
+                </div>
+                <button className="button" onClick={removeGroupFromBasket}>
+                    Remove from Basket
+                </button>
+            </div>
         </div >
     );
 };

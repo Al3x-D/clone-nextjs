@@ -7,7 +7,7 @@ import Order from '../components/Order';
 
 const Orders = ({ orders }) => {
     const { data: session } = useSession();
-    console.log(orders)
+    // console.log(orders)
     return (
         <div>
             <Header />
@@ -35,8 +35,14 @@ const Orders = ({ orders }) => {
     );
 };
 
-//  server side rendering
+
 export default Orders;
+//  server side rendering
+
+
+// Tells nextJS that's no longer a static page
+// eg "Please calculate smthg and send it to the user next"
+// Here, it's executed by Node.js
 
 export async function getServerSideProps(context) {
     const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);

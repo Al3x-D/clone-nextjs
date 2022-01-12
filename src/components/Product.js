@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { StarIcon } from '@heroicons/react/solid';
 import Currency from 'react-currency-formatter';
 import { useDispatch } from 'react-redux';
+import { toast } from "react-toastify";
 import { addToBasket } from '../slices/basketSlice';
 //should use redux devtools (like reactdevtools ) for shov proces
 
@@ -24,7 +25,25 @@ const Product = ({ id, title, price, description, category, image }) => {
         const product ={ id, title, price, rating, description, category, image, hasPrime };
         //sending the product as an action to the REDUX store ... the bascet slice
         dispatch(addToBasket(product))
-        console.log(product)
+        // console.log(product)
+        toast.success(
+            <>
+                <span className="font-bold">Added to basket!</span>
+                <br />
+                {product.title.slice(0, 30)}
+                {product.title.length > 30 ? "…" : ""}
+            </>,
+            {
+                position: "top-right",
+                autoClose: 1500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                draggablePercent: 20,
+                progress: undefined,
+            }
+        );
     } 
     return (
         <div className='relative flex flex-col m-5 bg-white z-30 p-10'>
