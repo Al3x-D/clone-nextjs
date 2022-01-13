@@ -58,7 +58,7 @@ const Order = ({ id, amount, amountShipping, items, timestamp, images }) => {
 
                 </div>
                 <p className='text-sm whitespace-nowrap sm:text-xl self-end flex-1 text-right text-blue-500'>
-                    {/* {items.length} items */}
+                  
                     {items.reduce((total, item) => total + item.quantity, 0)}{" "}
                     items
                 </p>
@@ -68,9 +68,7 @@ const Order = ({ id, amount, amountShipping, items, timestamp, images }) => {
             </div>
                 <div className='p-5 sm:p-10'>
                     <div className='flex space-x-6 overflow-x-auto'>
-                        {/* {images.map((image)=>(
-                            <img src={image} alt="" className="h-20 object-contain sm:h-32 " />
-                        ))} */}
+                      
                         {groupedImages.map((group) => (
                         <div className="relative" key={group[1]}>
                             <img

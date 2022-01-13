@@ -42,7 +42,7 @@ const CheckoutProduct = ({
     }
    
     return (
-        <div className='grid grid-cols-5 '>
+        <div className='block py-4 sm:grid sm:grid-cols-5 my-16 sm:my-3'>
             <Image
                 src={image}
                 height={200}

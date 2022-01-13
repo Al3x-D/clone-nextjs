@@ -37,8 +37,8 @@ const Orders = ({ orders }) => {
 
 
 export default Orders;
-//  server side rendering
 
+//  server side rendering
 
 // Tells nextJS that's no longer a static page
 // eg "Please calculate smthg and send it to the user next"
@@ -63,7 +63,7 @@ export async function getServerSideProps(context) {
 
     //Stripe orders
     const orders = await Promise.all(
-        stripeOrders.docs.map(async (order) => ({
+        stripeOrders.docs.map(async(order) => ({
             id: order.id,
             amount: order.data().amount,
             amountShipping: order.data().amount_shipping,

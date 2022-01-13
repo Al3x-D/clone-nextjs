@@ -40,9 +40,9 @@ const Checkout = () => {
         if (result.error) alert(result.error.message);
 
     }
-    //////////
+    
     const groupedItems = Object.values(groupBy(items, "id"));
-    /////////
+    
     return (
         <div className='bg-gray-100'>
             <Header />
@@ -56,7 +56,7 @@ const Checkout = () => {
                         objectFit='contain'
                     />
 
-                    <div className='flex flex-col p-5 space-y-10 bg-white'>
+                    <div className='flex flex-col p-5 space-y-50 bg-white'>
                         <h1 className='text-3xl border-b pb-4'>
                             {items.length === 0 ? 'Your Amazon Basket is empty.' : "Shopping Basket"}
                         </h1>
@@ -89,40 +89,40 @@ const Checkout = () => {
                 </div>
 
                 {/* right */}
-                {/* /////  */}
+
                 <CSSTransition
                     in={items.length > 0}
                     timeout={300}
                     classNames="disappear"
-                    unmountOnExit>                      
-                {/* /////  */}                        
+                    unmountOnExit
+                >
 
-                <div className='flex flex-col bg-white p-10 shadow-md'>
-                    {/* {items.length > 0 && (
+
+                    <div className='flex flex-col bg-white p-10 shadow-md'>
+                        {/* {items.length > 0 && (
                         <> */}
-                            <h2 className='whitespace-nowrap'>
-                                Subtotal ({items.length} items):{" "}
-                                <span className='font-bold'>
-                                    <Currency
-                                        quantity={total}
-                                        currency="EUR"
-                                    />
-                                </span>
-                            </h2>
-                            <button
-                                role="link"
-                                onClick={createCheckoutSession}
-                                disabled={!session}
-                                className={`button mt-2 my-6 ${
-                                    !session && 
-                                    'from-gray-300 to-gray-500 border-gray-200 text-gray-300 cursor-not-allowed'
-                                    } `}>
-                                {!session ? 'Sign in to checkout' : 'Proceed to checkout'}
-                            </button>
+                        <h2 className='whitespace-nowrap'>
+                            Subtotal ({items.length} items):{" "}
+                            <span className='font-bold'>
+                                <Currency
+                                    quantity={total}
+                                    currency="EUR"
+                                />
+                            </span>
+                        </h2>
+                        <button
+                            role="link"
+                            onClick={createCheckoutSession}
+                            disabled={!session}
+                            className={`button mt-2 my-6 ${!session &&
+                                'from-gray-300 to-gray-500 border-gray-200 text-gray-300 cursor-not-allowed'
+                                } `}>
+                            {!session ? 'Sign in to checkout' : 'Proceed to checkout'}
+                        </button>
                         {/* </>
                     )} */}
 
-                </div>
+                    </div>
                 </CSSTransition>
 
             </main>
