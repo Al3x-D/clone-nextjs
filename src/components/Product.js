@@ -17,6 +17,7 @@ const Product = ({ id, title, price, description, category, image }) => {
         //randomise rating
         Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING
     );
+    
     //for boolean value (true or false if rand < 0.5 has primeDelivery if > no delivery)
     const [hasPrime] = useState(Math.random() < 0.5);
     
@@ -70,7 +71,7 @@ const Product = ({ id, title, price, description, category, image }) => {
                 />
             </div>
             {hasPrime &&(
-                <div className=' flex items-center space-x-2 -mt-5'>
+                <div className='flex items-center space-x-2 -mt-5'>
                     <img className='w-12' src="https://links.papareact.com/fdw" alt="" />
                     <p className='text-xs text-gray-500'>FREE Next-day Delivery</p>
                 </div>  

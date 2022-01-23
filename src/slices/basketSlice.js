@@ -41,7 +41,6 @@ export const basketSlice = createSlice({
       }
       state.items = newBasket;
     },
-    ///////////
     removeGroupedFromBasket: (state, action) => {
       let newBasket = state.items.filter(
         (item) => item.id !== action.payload.id
@@ -52,7 +51,7 @@ export const basketSlice = createSlice({
     clearBasket: (state, action) => {
       state.items = [];
     },
-    //////////
+   
   },
 });
 

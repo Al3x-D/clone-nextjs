@@ -1,7 +1,4 @@
 import React from "react";
-// import "./Footer.css";
-// import amazonLogo from "../assets/logo.svg";
-// import DropDown from "./DropDown";
 
 const languages = [
   "English",
@@ -16,7 +13,7 @@ const languages = [
   "Japanese",
   "Arabic",
 ];
-// const currency = ["$ - USD", "₹ - INR", "£ - GBP", "€ - EUR", "¥ - JPY"];
+
 const footerLinks = [
   {
     title: "Get to Know Us",
@@ -63,7 +60,7 @@ function Footer() {
           <strong>Disclaimer:</strong> This is not the official Amazon Store. It
           is a redesign, built purely for educational purpose.
         </div>
-        <div className="footer__links">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 mx-auto p-4"> {/* footer__links */}
           {footerLinks.map((link) => (
             <div className="footer__row">
               <h6>{link.title}</h6>
@@ -76,23 +73,7 @@ function Footer() {
           ))}
         </div>
         <div className="footer__bottom">
-          {/* <img src={amazonLogo} className="footer__logo" />
-          <span className="footer__copy">
-            &copy; 2020 | Developed by{" "}
-            <a href="https://dashsantosh.me">Dash Santosh</a>
-          </span> */}
-          {/* <span className="footer__dropDownSpan">
-            <DropDown
-              className="footer__dropDown footer__langDropDown"
-              items={languages}
-              defaultItem={languages[0]}
-            />
-            <DropDown
-              className="footer__dropDown footer__currDropDown"
-              items={currency}
-              defaultItem={currency[0]}
-            />
-          </span> */}
+          
         </div>
       </div>
     </div>
